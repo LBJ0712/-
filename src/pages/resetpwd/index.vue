@@ -77,7 +77,7 @@
 <script>
 import dayjs from 'dayjs'
 import { mapActions } from 'vuex'
-import { getCode } from '@/api/getCode'
+import { getResetpwdCode } from '@/api/getCode'
 import { resetpwd } from '@/api/resetpwd'
 
 export default {
@@ -175,10 +175,9 @@ export default {
         this.$message.error(s)
         return
       }
-      getCode({
+      getResetpwdCode({
         username: this.formLogin.username,
-        mail: this.formLogin.mail,
-        type: 'resetpwd'
+        mail: this.formLogin.mail
       }).then(res => {
         this.lodingState = false
         this.$message.success("发送到邮箱成功，如果没有收到，请检查垃圾箱")

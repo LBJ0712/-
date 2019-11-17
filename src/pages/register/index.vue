@@ -82,7 +82,7 @@
 <script>
 import dayjs from 'dayjs'
 import { mapActions } from 'vuex'
-import { getCode } from '@/api/getCode'
+import { getRegisterCode } from '@/api/getCode'
 import { register } from '@/api/register'
 
 export default {
@@ -174,12 +174,13 @@ export default {
       let s = this.isEmail(this.formLogin.mail)
       if(s !== ''){
         this.$message.error(s)
+        this.lodingState = false
+        this.canClick = true
         return
       }
-      getCode({
+      getRegisterCode({
         username: this.formLogin.username,
-        mail: this.formLogin.mail,
-        type: 'register'
+        mail: this.formLogin.mail
       }).then(res => {
         this.lodingState = false
         this.$message.success("发送到邮箱成功，如果没有收到，请检查垃圾箱")

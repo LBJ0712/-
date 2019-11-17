@@ -59,10 +59,10 @@
           avatarUrl: avatar
         }).then(res => {
         }).catch(err =>{
-          this.$notify.error({
-            title: '错误',
-            message: '请稍后再试'
-          });
+          // this.$notify.error({
+          //   title: '错误',
+          //   message: '请稍后再试'
+          // });
         })
 
       },

@@ -31,8 +31,8 @@
 <script>
   import {isEmail} from '@/common/emailUtil.js'
   import { mapState} from 'vuex'
-  import { getUpdateEmailCodeAPI, updateEmailAPI } from '@/api/update/updateEmail'
-
+  import { updateEmailAPI } from '@/api/update/updateEmail'
+  import { getResetmailCode } from '@/api/getCode'
   export default {
     data() {
       return {
@@ -61,7 +61,7 @@
         this.lodingState = true
         if (!this.canClick) return
         this.canClick = false //改动的是这两行代码
-        getUpdateEmailCodeAPI({
+        getResetmailCode({
           originalEmail: this.form.email
         }).then(res =>{
           this.lodingState = false

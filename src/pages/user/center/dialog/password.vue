@@ -34,7 +34,7 @@
   import {isEmail} from '@/common/emailUtil.js'
   import { mapState} from 'vuex'
   import { resetpwd } from '@/api/resetpwd'
-  import {getUpdatePasswordCodeAPI, updatePasswordAPI} from '@/api/update/updatePassword'
+  import { getResetpwdCode } from '@/api/getCode'
 
   export default {
     data() {
@@ -83,8 +83,8 @@
         this.lodingState = true
         if (!this.canClick) return   //改动的是这两行代码
         this.canClick = false
-        getUpdatePasswordCodeAPI({
-          originalEmail: this.form.email
+        getResetpwdCode({
+          mail: this.form.email
         }).then(res =>{
           this.lodingState = false
           this.$message.success("发送到邮箱成功，如果没有收到，请检查垃圾箱")
@@ -107,9 +107,9 @@
 
       },
       updatePassword(){
-        updatePasswordAPI({
+        resetpwd({
           password: this.form.password_confirm,
-          email: this.form.email,
+          mail: this.form.email,
           code: this.form.code
         }).then(res =>{
           this.$message.success("更改成功")
